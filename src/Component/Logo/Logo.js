@@ -15,4 +15,3 @@ const Logo = ( )=> {
         );
     }
     export default Logo;
-    //<a target="_blank" href="https://icons8.com/icon/0TvZuRZKQu88/critical-thinking">Critical Thinking</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
