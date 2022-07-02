@@ -4,9 +4,9 @@ class Register extends React.Component {
     constructor ( props ){
         super ( props );
         this.state = {
-            email : '',
-            password : '',
-            name : '',
+            email : ' ',
+            password : ' ',
+            name : ' ',
         }
     }
     onNameChange = ( event ) => {
