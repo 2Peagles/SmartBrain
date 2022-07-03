@@ -1,42 +1,47 @@
 import React from 'react';
 
 class Register extends React.Component {
-    constructor ( props ){
-        super ( props );
+    constructor (props){
+        super (props);
         this.state = {
-            email : '',
-            password : '',
-            name : '',
+            email : ' ',
+            password : ' ',
+            name : ' '
         }
     }
+
     onNameChange = ( event ) => {
-        this.setstate({signinName: event.target.value})
+        this.setState({name: event.target.value})
     }
+
     onEmailChange = ( event ) => {
-        this.setstate({signinEmail: event.target.value})
+        this.setState({email: event.target.value})
     }
+
     onPasswordChange = ( event ) => {
-        this.setstate({signinPassword: event.target.value})
+        this.setState({password: event.target.value})
     }
-    onSumbitSignIn = ( ) => {
-        fetch ('http: //localhost :3000/register' , {
-            method : 'post',
-            headers : { 'content-Type ': 'application/json' },
-            body :JSON.stringify({
+
+    onSubmitSignIn = ( ) => {
+        fetch('http://localhost:3000/register', {
+            method: 'post',
+            headers:{'Content-Type': 'application/json' },
+            body: JSON.stringify({
                 email: this.state.email,
-                password : this.state.password,
+                password: this.state.password,
                 name: this.state.name
             })
         })
-        .then (response => response.json( ))
-        .then (user => {
-          if (user === 'success' )  {
+        .then(response => response.json( ))
+        .then(user => {
+          if (user.id)  {
              this.props.loadUser (user)
             this.props.onRouteChange('home');
           }
         }
     )
  }
+
  render ( )  {
 return(
 <article class="br3 ba  b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
@@ -74,7 +79,8 @@ return(
             </fieldset>
              <div class="">
             <input 
-                onClick ={ this.onSumbitSignIn} class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
+                onClick={this.onSubmitSignIn}
+                 class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
                 type="submit" 
                 value="Register"/>
             </div>

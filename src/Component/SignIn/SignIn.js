@@ -1,37 +1,38 @@
 import React from 'react';
 
 class Signin extends React.Component {
-    constructor ( props ){
-        super ( props );
-        this.state ={
+    constructor (props){
+        super (props);
+        this.state = {
             signInEmail : '',
             signInPassword : ''
         }
     }
     onEmailChange = ( event ) => {
-        this.setstate({signinEmail: event.target.value})
+        this.setState({signInEmail: event.target.value})
     }
     onPasswordChange = ( event ) => {
-        this.setstate({signinPassword: event.target.value})
+        this.setState({signInPassword: event.target.value})
     }
-     onSumbitSignIn = ( ) => {
-        fetch ('http: //localhost :3000/signin' , {
-            method : 'post',
-            headers : { 'content-Type ': 'application/json' },
-            body : JSON.stringify ( {
-                email : this.state.signinEmail,
-                password : this.state.signInpassword
+     onSubmitSignIn = ( ) => {
+        fetch('http://localhost:3000/Signin', {
+            method: 'post',
+            headers:{'Content-Type': 'application/json'},
+            body: JSON.stringify ( {
+                email: this.state.signInEmail,
+                password: this.state.signInPassword
             })
         })
-        .then (Response => Response.json( ))
-        .then (user => {
+        .then(response => response.json( ))
+        .then(user => {
             if (user.id) {
             this.props.loadUser(user);
-            this.props.onRouteChange (' home ' ) ;
+            this.props.onRouteChange( 'home' ) ;
             }
         })
 }
      render ( ) {
+        const{ onRouteChange } = this.props;
 return(
 <article class="br3 ba  b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
 <main class="pa4 black-80">
@@ -59,12 +60,12 @@ return(
             </fieldset>
              <div class="">
             <input 
-                onClick ={ this.onSumbitSignIn} class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
+                onClick ={ this.onSubmitSignIn} class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
                 type="submit" 
-                value="Sign in"/>
+                value="Sign In"/>
             </div>
             <div class="1h-copy mt3">
-            <p  onClick ={ ( )=> this.onRouteChange ('register')} className ="f6 link dim black db pointer">Register Today!</p>
+            <p  onClick ={ ( )=> onRouteChange ('register')} className ="f6 link dim black db pointer">Register Today!</p>
             </div>
     </div>
 </main>
